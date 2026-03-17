@@ -142,10 +142,11 @@ struct EnrollmentView: View {
     }
 
     private func finishEnrollment() {
-        // TODO: Upload recordings to training pipeline
-        // For now, mark enrollment as complete
-        appState.hasCompletedEnrollment = true
-        appState.voiceProfileID = UUID().uuidString
+        Task {
+            await viewModel.uploadAndTrain()
+            appState.hasCompletedEnrollment = true
+            appState.voiceProfileID = viewModel.trainingJobID ?? UUID().uuidString
+        }
     }
 }
 
@@ -164,8 +165,15 @@ final class EnrollmentViewModel: ObservableObject {
     @Published var currentPromptIndex = 0
     @Published var isRecording = false
     @Published var recordings: [Int: URL] = [:]
+    @Published var isUploading = false
+    @Published var uploadError: String?
 
     private var audioRecorder: AVAudioRecorder?
+    private let enrollmentManager = EnrollmentManager()
+    private let trainingStatus = TrainingStatusService()
+
+    /// Set after successful upload — used as the voice profile ID
+    var trainingJobID: String?
 
     let prompts: [RecordingPrompt] = [
         // English passages for timbre capture
@@ -262,5 +270,52 @@ final class EnrollmentViewModel: ObservableObject {
     private func getRecordingURL(for index: Int) -> URL {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return dir.appendingPathComponent("enrollment_\(index).wav")
+    }
+
+    /// Package and upload recordings to the training pipeline.
+    func uploadAndTrain() async {
+        guard !recordings.isEmpty else { return }
+
+        isUploading = true
+        uploadError = nil
+
+        let promptTuples = prompts.map { (category: $0.category, text: $0.text) }
+
+        // TODO: Replace with actual training server URL from AppConfiguration
+        let serverURL = "https://api.voicetranslator.app/v1/enrollment/upload"
+
+        do {
+            let response = try await enrollmentManager.uploadRecordings(
+                recordings: recordings,
+                prompts: promptTuples,
+                serverURL: serverURL
+            )
+            trainingJobID = response.jobID
+
+            // Start polling for training completion in the background
+            trainingStatus.startPolling(statusURL: response.statusURL) { status in
+                switch status {
+                case .completed(let modelURL, let sha256):
+                    print("[Enrollment] Training complete! Model URL: \(modelURL)")
+                    // Model download will be triggered by VoiceProfileManager
+                    // when the user opens the app next
+                    Task { @MainActor in
+                        KeychainHelper.save(key: "pending_model_url", value: modelURL)
+                        if let sha = sha256 {
+                            KeychainHelper.save(key: "pending_model_sha256", value: sha)
+                        }
+                    }
+                case .failed(let reason):
+                    print("[Enrollment] Training failed: \(reason)")
+                default:
+                    break
+                }
+            }
+        } catch {
+            uploadError = error.localizedDescription
+            print("[Enrollment] Upload failed: \(error.localizedDescription)")
+        }
+
+        isUploading = false
     }
 }

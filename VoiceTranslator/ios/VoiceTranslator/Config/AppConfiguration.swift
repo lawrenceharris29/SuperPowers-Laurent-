@@ -17,9 +17,15 @@ enum AppConfiguration {
 
     // TTS
     static let ttsModelFileName = "voice_model.mlmodel"
+    static let phonemeInventoryFileName = "thai_phonemes.json"
 
     // Enrollment
     static let minimumRecordingsRequired = 8
+
+    // Training Server
+    static let trainingServerBaseURL = "https://api.voicetranslator.app/v1"
+    static let enrollmentUploadPath = "/enrollment/upload"
+    static let trainingStatusPath = "/training/status"
 
     // Paths
     static var documentsDirectory: URL {
