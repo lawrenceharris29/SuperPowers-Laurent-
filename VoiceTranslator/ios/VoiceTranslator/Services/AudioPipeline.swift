@@ -5,9 +5,10 @@ import Foundation
 /// State machine:
 ///   idle → listening → translating → synthesizing → speaking → idle
 ///
-/// TTS integration points are fully wired. Once Stream 2 delivers the trained
-/// CoreML model and Stream 3 delivers the phoneme engine, the pipeline will
-/// produce audio end-to-end without code changes.
+/// TTS integration is fully wired using:
+///   - PhonemeTokenizer (Gemini's thai_phonemes.json vocab)
+///   - CoreMLTTSEngine (VITS model, phoneme IDs + durations → Float32 PCM)
+///   - StreamingAudioPlayer (schedules [Float] chunks for gapless playback)
 @MainActor
 final class AudioPipeline: ObservableObject {
     enum PipelineState: Equatable {
@@ -26,17 +27,16 @@ final class AudioPipeline: ObservableObject {
     let stt = SpeechRecognitionService()
     let translation = TranslationService()
     let ttsEngine = CoreMLTTSEngine()
-    let audioPlayer = StreamingAudioPlayer()
+    let audioPlayer = StreamingAudioPlayer(sampleRate: 22050)
     let tokenizer = PhonemeTokenizer()
 
-    /// Accumulates Thai phrases for batch TTS when streaming isn't ready.
+    /// Accumulates Thai phrases for TTS after translation completes.
     private var phraseQueue: [String] = []
-    private var isProcessing = false
 
     func configure(apiKey: String) {
         translation.configure(apiKey: apiKey)
 
-        // Try to load phoneme inventory from bundle
+        // Load phoneme inventory from bundle
         try? tokenizer.loadInventory()
 
         // Wire STT callbacks
@@ -55,11 +55,10 @@ final class AudioPipeline: ObservableObject {
             }
         }
 
-        // Wire translation phrase callback → TTS
+        // Wire translation phrase callback → accumulate for TTS
         translation.onPhrase = { [weak self] phrase in
             Task { @MainActor in
-                guard let self else { return }
-                self.phraseQueue.append(phrase)
+                self?.phraseQueue.append(phrase)
             }
         }
 
@@ -73,7 +72,7 @@ final class AudioPipeline: ObservableObject {
 
     func startListening() {
         guard state == .idle || state == .speaking else { return }
-        audioPlayer.stop() // Stop any ongoing playback
+        audioPlayer.stop()
         state = .listening
         currentTranscript = ""
         currentTranslation = ""
@@ -102,11 +101,10 @@ final class AudioPipeline: ObservableObject {
     private func processTranslation(_ text: String) async {
         phraseQueue = []
 
-        // Start translation (phrases accumulate via onPhrase callback)
+        // Translation streams phrases via onPhrase callback
         await translation.translate(text)
         currentTranslation = translation.translatedText
 
-        // Now synthesize and play all collected phrases
         await synthesizeAndPlay()
     }
 
@@ -118,32 +116,49 @@ final class AudioPipeline: ObservableObject {
 
         state = .synthesizing
 
-        // Combine all phrases for synthesis
         let fullText = phraseQueue.joined(separator: " ")
 
         guard ttsEngine.isModelLoaded else {
-            // TTS model not loaded yet — log and return to idle
-            // This is expected until the user completes enrollment + training
-            print("[Pipeline] TTS model not loaded. Thai text ready: \(fullText)")
+            // Model not loaded — expected until enrollment + training completes
+            print("[Pipeline] TTS model not loaded. Thai text: \(fullText)")
+            state = .idle
+            return
+        }
+
+        guard tokenizer.isLoaded else {
+            print("[Pipeline] Phoneme tokenizer not loaded.")
             state = .idle
             return
         }
 
         do {
-            // Start audio playback engine
             try audioPlayer.start()
             state = .speaking
 
-            // Stream synthesis for each phrase
             for (index, phrase) in phraseQueue.enumerated() {
                 let isLast = index == phraseQueue.count - 1
 
-                let audioData = try await ttsEngine.synthesize(phonemes: phrase)
+                // Tokenize the Thai IPA phrase
+                let tokenIDs = try tokenizer.tokenize(phrase)
+
+                // Default durations (200ms per token) — ProsodyModel will
+                // provide real durations once the server-side pipeline runs
+                let durations = [Int32](repeating: 200, count: tokenIDs.count)
+
+                // Synthesize: phoneme IDs → Float32 PCM
+                let pcmSamples = try await ttsEngine.synthesize(
+                    phonemeIDs: tokenIDs,
+                    durations: durations
+                )
+
+                // Normalize audio before playback
+                var normalizedSamples = pcmSamples
+                AudioUtilities.normalize(pcmData: &normalizedSamples)
 
                 if isLast {
-                    audioPlayer.scheduleFinalChunk(audioData)
+                    audioPlayer.scheduleFinalChunk(normalizedSamples)
                 } else {
-                    audioPlayer.scheduleChunk(audioData)
+                    audioPlayer.scheduleChunk(normalizedSamples)
                 }
             }
         } catch {
@@ -151,7 +166,7 @@ final class AudioPipeline: ObservableObject {
             audioPlayer.stop()
             state = .error(error.localizedDescription)
 
-            // Auto-recover to idle after a brief delay
+            // Auto-recover to idle
             Task {
                 try? await Task.sleep(nanoseconds: 2_000_000_000)
                 if case .error = state {

@@ -1,7 +1,7 @@
 import AVFoundation
 
 /// Plays PCM audio chunks as they arrive, enabling low-latency streaming playback.
-/// Stream 3 (Gemini) will provide the full implementation; this is the interface contract.
+/// Accepts both raw `Data` (from network) and `[Float]` (from CoreML TTS).
 final class StreamingAudioPlayer {
     private let engine = AVAudioEngine()
     private let playerNode = AVAudioPlayerNode()
@@ -9,7 +9,7 @@ final class StreamingAudioPlayer {
 
     var onPlaybackComplete: (() -> Void)?
 
-    init(sampleRate: Double = 16000, channels: UInt32 = 1) {
+    init(sampleRate: Double = 22050, channels: UInt32 = 1) {
         format = AVAudioFormat(
             commonFormat: .pcmFormatFloat32,
             sampleRate: sampleRate,
@@ -22,20 +22,40 @@ final class StreamingAudioPlayer {
     }
 
     func start() throws {
-        try engine.start()
+        if !engine.isRunning {
+            try engine.start()
+        }
         playerNode.play()
     }
 
-    /// Schedule a chunk of PCM audio data for playback.
-    /// Chunks are queued and played in order, enabling streaming.
-    func scheduleChunk(_ pcmData: Data) {
-        guard let buffer = pcmBuffer(from: pcmData) else { return }
+    /// Schedule Float32 PCM samples for playback (from CoreML TTS output).
+    func scheduleChunk(_ pcmSamples: [Float]) {
+        guard let buffer = pcmBuffer(from: pcmSamples) else { return }
         playerNode.scheduleBuffer(buffer)
     }
 
-    /// Schedule the final chunk and notify on completion.
+    /// Schedule the final chunk of Float32 samples and notify on completion.
+    func scheduleFinalChunk(_ pcmSamples: [Float]) {
+        guard let buffer = pcmBuffer(from: pcmSamples) else {
+            onPlaybackComplete?()
+            return
+        }
+        playerNode.scheduleBuffer(buffer) { [weak self] in
+            DispatchQueue.main.async {
+                self?.onPlaybackComplete?()
+            }
+        }
+    }
+
+    /// Schedule raw PCM Data for playback (legacy interface).
+    func scheduleChunk(_ pcmData: Data) {
+        guard let buffer = pcmBuffer(fromData: pcmData) else { return }
+        playerNode.scheduleBuffer(buffer)
+    }
+
+    /// Schedule the final chunk of raw Data and notify on completion.
     func scheduleFinalChunk(_ pcmData: Data) {
-        guard let buffer = pcmBuffer(from: pcmData) else {
+        guard let buffer = pcmBuffer(fromData: pcmData) else {
             onPlaybackComplete?()
             return
         }
@@ -48,10 +68,32 @@ final class StreamingAudioPlayer {
 
     func stop() {
         playerNode.stop()
-        engine.stop()
+        if engine.isRunning {
+            engine.stop()
+        }
     }
 
-    private func pcmBuffer(from data: Data) -> AVAudioPCMBuffer? {
+    // MARK: - Buffer Conversion
+
+    private func pcmBuffer(from samples: [Float]) -> AVAudioPCMBuffer? {
+        let frameCount = UInt32(samples.count)
+        guard frameCount > 0,
+              let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else {
+            return nil
+        }
+        buffer.frameLength = frameCount
+
+        if let dst = buffer.floatChannelData?[0] {
+            samples.withUnsafeBufferPointer { src in
+                if let baseAddress = src.baseAddress {
+                    dst.initialize(from: baseAddress, count: samples.count)
+                }
+            }
+        }
+        return buffer
+    }
+
+    private func pcmBuffer(fromData data: Data) -> AVAudioPCMBuffer? {
         let frameCount = UInt32(data.count) / format.streamDescription.pointee.mBytesPerFrame
         guard frameCount > 0,
               let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else {

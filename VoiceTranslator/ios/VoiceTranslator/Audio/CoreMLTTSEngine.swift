@@ -1,86 +1,118 @@
 import Foundation
 import CoreML
+import os.log
 
-/// On-device TTS engine using a CoreML model fine-tuned on the user's voice.
-/// The actual model loading and inference will be completed after Stream 2 (GPT-4o)
-/// delivers the trained model and Stream 3 (Gemini) delivers the phoneme engine.
+/// On-device TTS engine using a VITS CoreML model fine-tuned on the user's voice.
 ///
-/// Interface contract for the rest of the app:
-/// - Load a .mlmodel from disk
-/// - Accept phoneme sequence + prosody hints
-/// - Return PCM audio data (16kHz, mono, float32)
+/// Input: phoneme token IDs + duration arrays (from PhonemeTokenizer + ProsodyModel)
+/// Output: PCM Float32 audio at 22050 Hz
+///
+/// Uses Neural Engine when available for low-latency inference.
 @MainActor
 final class CoreMLTTSEngine: ObservableObject {
     @Published var isModelLoaded = false
 
     private var model: MLModel?
+    private let logger = Logger(subsystem: "com.voicetranslator", category: "CoreMLTTS")
 
     enum TTSError: LocalizedError {
         case modelNotLoaded
         case inferenceError(String)
-        case invalidPhonemes
+        case invalidInput(String)
 
         var errorDescription: String? {
             switch self {
             case .modelNotLoaded: return "TTS model not loaded"
             case .inferenceError(let msg): return "TTS inference failed: \(msg)"
-            case .invalidPhonemes: return "Invalid phoneme sequence"
+            case .invalidInput(let msg): return "Invalid TTS input: \(msg)"
             }
         }
     }
 
-    /// Load the CoreML model from a file path.
+    /// Load and prewarm the VITS CoreML model.
     func loadModel(at path: String) async throws {
         let url = URL(fileURLWithPath: path)
-        let compiledURL = try await MLModel.compileModel(at: url)
-        let config = MLModelConfiguration()
-        config.computeUnits = .all // Use Neural Engine when available
-        model = try MLModel(contentsOf: compiledURL, configuration: config)
-        isModelLoaded = true
+        try await loadModel(url: url)
     }
 
-    /// Synthesize speech from a phoneme sequence.
-    /// Returns PCM audio data (16kHz, mono, float32).
+    /// Load from a URL (supports both file and compiled model URLs).
+    func loadModel(url: URL) async throws {
+        let config = MLModelConfiguration()
+        config.computeUnits = .all // Leverages Neural Engine where available
+
+        // Load on background thread to prevent UI hang
+        let loadedModel = try await Task.detached {
+            let compiledURL = try MLModel.compileModel(at: url)
+            return try MLModel(contentsOf: compiledURL, configuration: config)
+        }.value
+
+        model = loadedModel
+        isModelLoaded = true
+        logger.info("CoreML TTS model loaded successfully.")
+    }
+
+    /// Unload the model to free memory.
+    func unload() {
+        model = nil
+        isModelLoaded = false
+        logger.info("CoreML TTS model unloaded.")
+    }
+
+    /// Synthesize speech from phoneme token IDs and durations.
     ///
     /// - Parameters:
-    ///   - phonemes: IPA phoneme string (e.g., "sa˨˩.wat̚˨˩.diː˧")
-    ///   - tempo: Speech rate multiplier (1.0 = normal)
-    /// - Returns: Raw PCM audio data
-    func synthesize(phonemes: String, tempo: Float = 1.0) async throws -> Data {
+    ///   - phonemeIDs: Token IDs from PhonemeTokenizer
+    ///   - durations: Per-phoneme durations in ms from ProsodyModel
+    /// - Returns: PCM Float32 audio samples (22050 Hz, mono)
+    func synthesize(phonemeIDs: [Int32], durations: [Int32]) async throws -> [Float] {
         guard let model else { throw TTSError.modelNotLoaded }
+        guard !phonemeIDs.isEmpty else { throw TTSError.invalidInput("Empty phoneme IDs") }
 
-        // TODO: Implement actual inference when model format is known.
-        // The model input/output schema depends on Stream 2's chosen architecture
-        // (VITS vs Piper) and Stream 3's phoneme encoding format.
-        //
-        // Pseudocode:
-        // 1. Encode phonemes to token IDs (from Stream 3's phoneme inventory)
-        // 2. Create MLMultiArray with token IDs
-        // 3. Create MLDictionaryFeatureProvider with tokens + tempo
-        // 4. model.prediction(from: features)
-        // 5. Extract audio MLMultiArray from output
-        // 6. Convert to PCM Data
+        let seqLen = phonemeIDs.count
 
-        _ = model // Suppress unused warning
-        throw TTSError.inferenceError("Model inference not yet implemented — awaiting Streams 2 & 3")
+        guard let idArray = try? MLMultiArray(shape: [1, NSNumber(value: seqLen)], dataType: .int32),
+              let durArray = try? MLMultiArray(shape: [1, NSNumber(value: seqLen)], dataType: .int32) else {
+            throw TTSError.inferenceError("Failed to create MLMultiArrays")
+        }
+
+        for i in 0..<seqLen {
+            idArray[[0, NSNumber(value: i)]] = NSNumber(value: phonemeIDs[i])
+            durArray[[0, NSNumber(value: i)]] = NSNumber(value: i < durations.count ? durations[i] : 200)
+        }
+
+        let provider = try MLDictionaryFeatureProvider(dictionary: [
+            "phoneme_ids": idArray,
+            "durations": durArray
+        ])
+
+        // Run inference on background thread
+        let capturedModel = model
+        let output = try await Task.detached(priority: .userInitiated) {
+            return try capturedModel.prediction(from: provider)
+        }.value
+
+        // Extract PCM from output tensor (expected shape: [1, 1, audio_len])
+        guard let audioOutput = output.featureValue(for: "audio_output")?.multiArrayValue else {
+            throw TTSError.inferenceError("Invalid output tensor — expected 'audio_output' key")
+        }
+
+        let count = audioOutput.count
+        var pcmData = [Float](repeating: 0.0, count: count)
+
+        let ptr = audioOutput.dataPointer.bindMemory(to: Float.self, capacity: count)
+        let buffer = UnsafeBufferPointer(start: ptr, count: count)
+        _ = pcmData.withUnsafeMutableBufferPointer { $0.update(from: buffer) }
+
+        logger.info("Synthesized \(count) audio samples (\(Double(count) / 22050.0, format: .fixed(precision: 2))s)")
+        return pcmData
     }
 
-    /// Synthesize and stream audio chunks for lower latency.
-    /// Yields PCM data chunks as they're generated.
-    func synthesizeStreaming(phonemes: String, tempo: Float = 1.0) -> AsyncThrowingStream<Data, Error> {
-        AsyncThrowingStream { continuation in
-            Task {
-                do {
-                    // For now, synthesize the whole thing and yield as one chunk.
-                    // True streaming will depend on whether the model supports
-                    // incremental decoding.
-                    let audio = try await synthesize(phonemes: phonemes, tempo: tempo)
-                    continuation.yield(audio)
-                    continuation.finish()
-                } catch {
-                    continuation.finish(throwing: error)
-                }
-            }
-        }
+    /// Convenience: synthesize from IPA phoneme string using tokenizer and default durations.
+    func synthesize(phonemes: String, tokenizer: PhonemeTokenizer, tempo: Float = 1.0) async throws -> [Float] {
+        let tokenIDs = try tokenizer.tokenize(phonemes)
+        // Default duration of 200ms per token, scaled by tempo
+        let baseDuration = Int32(Float(200) / tempo)
+        let durations = [Int32](repeating: baseDuration, count: tokenIDs.count)
+        return try await synthesize(phonemeIDs: tokenIDs, durations: durations)
     }
 }
