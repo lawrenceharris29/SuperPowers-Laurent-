@@ -1,0 +1,46 @@
+# Hyperparameters for fine‑tuning VITS on a small Thai/English dataset.
+
+# Name of the pretrained checkpoint to start from. The Massively Multilingual
+# Speech (MMS) Thai model is a VITS model trained on a large Thai speech
+# dataset by Meta AI. It provides a strong base for fine‑tuning on a new
+# speaker. The model has ~36M parameters and produces 16 kHz audio by
+# default【280315174426171†L50-L85】.
+pretrained_model: "facebook/mms-tts-tha"
+
+# Learning rate for AdamW optimiser. Small datasets typically benefit from
+# lower learning rates to avoid catastrophic forgetting. Adjust if training
+# diverges.
+learning_rate: 5.0e-5
+
+# Number of utterances per batch. Training TTS is memory‑intensive; batch sizes
+# of 1–4 typically fit on consumer GPUs (>=6 GB). Larger batch sizes improve
+# stability but require more memory.
+batch_size: 2
+
+# Number of epochs (passes over the dataset). With 30–45 minutes of data, 200–400
+# epochs usually suffice for convergence. Increase if synthetic speech remains
+# muffled. Total training time target is 2–4 h on a single RTX 3060【280315174426171†L50-L85】.
+num_epochs: 300
+
+# Number of warm‑up steps for the learning rate scheduler. Warming up helps
+# stabilise early training. Set to 200 for small datasets.
+warmup_steps: 200
+
+# Save a checkpoint every N steps. Frequent checkpoints enable recovering if
+# training terminates. Each checkpoint includes model and optimiser state.
+save_interval: 500
+
+# Evaluate and generate sample utterances every N steps. Generated samples will
+# be saved to the output/samples directory.
+eval_interval: 500
+
+# List of sample sentences to synthesise during training for qualitative
+# evaluation. Include both Thai and English sentences to verify multi‑lingual
+# capability and tonal accuracy.
+sample_texts:
+  - "สวัสดีครับ นี่คือเสียงพูดภาษาไทยที่คุณกำลังฟัง"
+  - "นี่เป็นประโยคทดสอบเพื่อตรวจสอบความถูกต้องของโทนเสียง"
+  - "Hello, this is a sample sentence for fine‑tuned TTS."
+
+# Random seed for reproducibility.
+seed: 42
