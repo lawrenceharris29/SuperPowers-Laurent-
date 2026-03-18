@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "description": "Thai TTS evaluation sentences with targeted phonetic features",
+    "difficulty_distribution": {
+      "easy": 5,
+      "medium": 8,
+      "hard": 4,
+      "stress_test": 3
+    }
+  },
+  "sentences": [
+    {
+      "id": "EASY-01",
+      "thai": "สวัสดีครับ",
+      "romanization": "sà-wàt-dii kráp",
+      "english": "Hello (male polite)",
+      "tests": ["mid_tone", "falling_tone", "final_particle_reduction", "polite_register"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "EASY-02",
+      "thai": "ขอบคุณมาก",
+      "romanization": "khɔ̀p-khun mâak",
+      "english": "Thank you very much",
+      "tests": ["low_tone", "falling_tone_high_class", "final_k_sound", "simple_vowel_อ"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "EASY-03",
+      "thai": "ลาก่อนนะ",
+      "romanization": "laa kɔ̀ɔn ná",
+      "english": "Goodbye for now",
+      "tests": ["mid_tone", "falling_tone", "soft_final_particle", "natural_phrasing"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "EASY-04",
+      "thai": "กินข้าวยัง",
+      "romanization": "kin khâaw yang",
+      "english": "Have you eaten yet?",
+      "tests": ["high_tone_mid_class", "falling_tone_live", "question_intonation", "common_idiom"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "EASY-05",
+      "thai": "ไม่เป็นไร",
+      "romanization": "mâi ppen-rai",
+      "english": "It's nothing/You're welcome",
+      "tests": ["falling_tone_negation", "mid_tone", "complex_vowel_ia", "common_phrase"],
+      "difficulty": "easy"
+    },
+    {
+      "id": "MED-01",
+      "thai": "วันนี้อากาศร้อนมาก",
+      "romanization": "wan-níi aa-kàat rɔ́ɔn mâak",
+      "english": "Today the weather is very hot",
+      "tests": ["high_tone_demonstrative", "low_tone_high_class", "rising_tone_low_class_dead", "final_t_sound_unreleased", "sentence_stress_final"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-02",
+      "thai": "ฉันชอบกินผัดไทย",
+      "romanization": "chǎn châawp kin phàt-thai",
+      "english": "I like to eat pad thai",
+      "tests": ["rising_tone_high_class", "falling_tone_low_class_live", "aspirated_kh", "cluster_ph_t", "short_vowel_a"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-03",
+      "thai": "เขาทำงานที่กรุงเทพฯ",
+      "romanization": "khǎo tham-ngaan thîi krung-thêep",
+      "english": "He works in Bangkok",
+      "tests": ["rising_tone_low_class_live", "falling_tone_dead", "cluster_kr", "aspirated_th", "final_p_abbreviation", "place_name_tone_sandhi"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-04",
+      "thai": "รถไฟใต้ดินสะดวกดี",
+      "romanization": "rót-fai thâai-din sà-dùak dii",
+      "english": "The subway is convenient",
+      "tests": ["falling_tone_dead_rod", "aspirated_th", "complex_vowel_ai", "final_n_live", "consonant_cluster_fai", "prosodic_phrasing"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-05",
+      "thai": "ห้องน้ำอยู่ชั้นสอง",
+      "romanization": "hɔ̌ɔng-nám yùu chán sɔ̌ɔng",
+      "english": "The bathroom is on the second floor",
+      "tests": ["rising_tone_high_class_live", "final_m_sound", "mid_tone_low_class", "short_vowel_a_ng", "number_tone_maintenance", "functional_phrase"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-06",
+      "thai": "อย่าลืมปิดประตู",
+      "romanization": "yàa lûuem pìt bprà-dtuu",
+      "english": "Don't forget to close the door",
+      "tests": ["low_tone_marked", "falling_tone", "final_t_unreleased", "cluster_bpr", "prohibitive_particle_yaa", "command_prosody"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-07",
+      "thai": "เดี๋ยวพาไปหาหมอ",
+      "romanization": "dǐaw phaa bpai hǎa mǎaw",
+      "english": "Will take you to see the doctor soon",
+      "tests": ["rising_tone_tone_mark", "aspirated_ph", "long_vowel_aa", "aspirated_h_initial", "mid_tone_low_class", "future_marker_prosody"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "MED-08",
+      "thai": "ธนาคารเปิดกี่โมง",
+      "romanization": "thá-naa-khaan bpèet gìi mooeng",
+      "english": "What time does the bank open?",
+      "tests": ["rising_tone_high_class", "mid_tone_cluster_kh", "question_word_intonation", "long_vowel_aa", "cluster_thn", "formal_register"],
+      "difficulty": "medium"
+    },
+    {
+      "id": "HARD-01",
+      "thai": "กรกฎาคมฝนตกหนักทุกปี",
+      "romanization": "grà-kà-daa-kom fǒn tòk nàk thúk bpii",
+      "english": "July rains heavily every year",
+      "tests": ["complex_cluster_gr", "aspirated_kh", "low_tone_high_class", "falling_tone_dead", "final_k_effective", "diphthong_o", "rhythm_patterns"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "HARD-02",
+      "thai": "ฉันกำลังฝึกพูดภาษาไทย",
+      "romanization": "chǎn kam-lang fùek phûut phaa-sǎa-thai",
+      "english": "I am practicing speaking Thai",
+      "tests": ["rising_tone_high_class", "cluster_kl", "falling_tone_with_dead_stop", "aspirated_ph", "complex_vowel_aa", "progressive_aspect_prosody"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "HARD-03",
+      "thai": "พรุ่งนี้ต้องออกไปต่างจังหวัด",
+      "romanization": "prûng-níi dtâawng ɔ̀ɔk bpai dtàang-jàng-wàt",
+      "english": "Tomorrow must go out to the provinces",
+      "tests": ["cluster_pr", "falling_tone_live_low", "aspirated_dt", "cluster_ngw", "final_t_unreleased_dtang", "obligation_modal_prosody"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "HARD-04",
+      "thai": "รถเมล์คันเก่าหยุดรับคนง่าย",
+      "romanization": "rót-may kan kàaw yùt ráp khon ngâay",
+      "english": "The old bus stops to pick up people easily",
+      "tests": ["falling_tone_dead", "loanword_prosody", "high_tone_low_class", "final_p_unreleased", "final_n_live", "rising_tone_low_class", "causative_verb_construction"],
+      "difficulty": "hard"
+    },
+    {
+      "id": "STRESS-01",
+      "thai": "ก๊วนศิษย์เก่าเรียงร้อยกรองกรอง",
+      "romanization": "gáawu sìt-kàaw rîiang-rɔ́ɔi grɔ̌ɔng-grɔ̌ɔng",
+      "english": "The old student group arranged neatly",
+      "tests": ["marked_high_tone_rare", "cluster_sit", "cluster_kh_aspirated", "vowel_oe", "final_ng", "tonal_minimal_pair_gawn_vs_gaun", "reduplication_prosody"],
+      "difficulty": "stress-test"
+    },
+    {
+      "id": "STRESS-02",
+      "thai": "ฑีฆท่านถ่ายภาพขรัวตาฬ",
+      "romanization": "thii-khá thâan thàay phâap khrǔa daa",
+      "english": "The noble one photographed the canyon eyes (archaic/poetic)",
+      "tests": ["rare_consonant_th", "rare_consonant_kh_low", "royal_vocabulary_thaan", "cluster_khr", "archaic_vowel_aan", "poetic_register_prosody"],
+      "difficulty": "stress-test"
+    },
+    {
+      "id": "STRESS-03",
+      "thai": "กล่ำกลื่นคำคล้องจองกลองกลิ้ง",
+      "romanization": "klàm klùen kham khlɔ́ɔng jɔ̌ɔng klɔ̌ɔng klîng",
+      "english": "Muttered words rhyming with rolling drums (tongue twister)",
+      "tests": ["cluster_kl_initial", "final_m_unreleased", "cluster_khl", "complex_vowel_o_long", "cluster_ng", "rapid_oscillation_tones", "tongue_twister_coordination"],
+      "difficulty": "stress-test"
+    }
+  ]
+}

@@ -1,0 +1,1012 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "language_pair": "en-th",
+    "register": "spoken_thai",
+    "default_particle": "ครับ",
+    "particle_note": "Use ค่ะ for female speakers where noted",
+    "total_pairs": 100
+  },
+  "test_pairs": [
+    {
+      "id": 1,
+      "category": "casual_greetings",
+      "english": "Hey, how's it going?",
+      "thai": "เฮ้ย เป็นยังไงบ้าง",
+      "romanization": "héey bpen-yang-ngai bâang",
+      "register": "informal",
+      "notes": "Male/female neutral, omit particles with close friends",
+      "particle": null
+    },
+    {
+      "id": 2,
+      "category": "casual_greetings",
+      "english": "Good morning! Did you sleep well?",
+      "thai": "อรุณสวัสดิ์ครับ นอนหลับสบายไหมครับ",
+      "romanization": "à-run-sà-wàt kráp, nɔɔn-làp-sà-baai mái kráp",
+      "register": "polite_morning",
+      "notes": "Use ค่ะ for female. Formal morning greeting vs casual.",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 3,
+      "category": "casual_greetings",
+      "english": "Long time no see! I've missed you.",
+      "thai": "ไม่ได้เจอกันนานเลยนะ คิดถึงจัง",
+      "romanization": "mâi-dâai-jooe-kan naan looei ná, khít-thǔeng jang",
+      "register": "warm",
+      "notes": "Restructured: Thai drops subject 'I' often",
+      "particle": "นะ"
+    },
+    {
+      "id": 4,
+      "category": "casual_greetings",
+      "english": "What's up? Everything cool?",
+      "thai": "ว่าไง เรียบร้อยดีมั้ย",
+      "romanization": "wâa-ngai rîiap-rɔ́ɔi dii mái",
+      "register": "slang",
+      "notes": "มั้ย is colloquial for ไหม",
+      "particle": null
+    },
+    {
+      "id": 5,
+      "category": "casual_greetings",
+      "english": "Take care! See you tomorrow.",
+      "thai": "ดูแลตัวเองนะ เจอกันพรุ่งนี้",
+      "romanization": "duu-lae dtua-eng ná, jooe-kan prûng-níi",
+      "register": "friendly",
+      "notes": "Literal 'care for self'",
+      "particle": "นะ"
+    },
+    {
+      "id": 6,
+      "category": "casual_greetings",
+      "english": "Thanks for coming over.",
+      "thai": "ขอบคุณที่มานะครับ",
+      "romanization": "khɔ̀p-khun thîi maa ná kráp",
+      "register": "grateful",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 7,
+      "category": "casual_greetings",
+      "english": "Sorry I'm late!",
+      "thai": "ขอโทษที่มาสายนะ",
+      "romanization": "khǎaw-thôot thîi maa sǎai ná",
+      "register": "apologetic",
+      "notes": "Use นะ to soften",
+      "particle": "นะ"
+    },
+    {
+      "id": 8,
+      "category": "casual_greetings",
+      "english": "Have you eaten yet?",
+      "thai": "กินข้าวรึยังครับ",
+      "romanization": "kin-khâaw rúe-yang kráp",
+      "register": "caring",
+      "notes": "Classic Thai greeting replacing 'How are you'",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 9,
+      "category": "casual_greetings",
+      "english": "Welcome! Make yourself at home.",
+      "thai": "ยินดีต้อนรับครับ ถือว่าบ้านตัวเองเลย",
+      "romanization": "yin-dii dtɔ̂ɔn-ráp kráp, thǔue wâa bâan dtua-eng looei",
+      "register": "hospitable",
+      "notes": "Second clause restructured: 'consider it your own home'",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 10,
+      "category": "casual_greetings",
+      "english": "Safe travels! Send me a message when you arrive.",
+      "thai": "เดินทางปลอดภัยนะ ถึงแล้วทักมาบอกด้วย",
+      "romanization": "deern-thaang plɔ̀ot-phai ná, thǔeng láew thák maa bɔ̀ɔk dûay",
+      "register": "concerned",
+      "notes": "ทัก = ping/message (modern usage)",
+      "particle": "นะ"
+    },
+    {
+      "id": 11,
+      "category": "directions_navigation",
+      "english": "Where is the nearest BTS station?",
+      "thai": "สถานี BTS ที่ใกล้ที่สุดอยู่ไหนครับ",
+      "romanization": "sà-thǎa-nii bii-tii-es thîi klâi thîi-sùt yùu nǎi kráp",
+      "register": "polite_inquiry",
+      "notes": "Keep BTS as loanword",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 12,
+      "category": "directions_navigation",
+      "english": "Turn left at the traffic light, then go straight for two blocks.",
+      "thai": "เลี้ยวซ้ายที่ไฟแดง แล้วตรงไปสองซอยครับ",
+      "romanization": "líaw sáai thîi fai-daeng, láew trong bpai sɔ̌ɔng sɔɔi kráp",
+      "register": "instructional",
+      "notes": "ซอย = soi/lane, used for blocks in Thai context",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 13,
+      "category": "directions_navigation",
+      "english": "It's opposite the shopping mall, next to the pharmacy.",
+      "thai": "อยู่ตรงข้ามห้าง ข้างๆ ร้านขายยาครับ",
+      "romanization": "yùu trong-khâam hâang, khâang-khâang ráan khǎai-yaa kráp",
+      "register": "descriptive",
+      "notes": "ข้างๆ = next to/side",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 14,
+      "category": "directions_navigation",
+      "english": "How far is it from here? Can I walk there?",
+      "thai": "จากตรงนี้ไกลมั้ย เดินไปได้ไหม",
+      "romanization": "jàak trong-níi glai mái, deern bpai dâai mái",
+      "register": "casual_check",
+      "notes": null,
+      "particle": null
+    },
+    {
+      "id": 15,
+      "category": "directions_navigation",
+      "english": "I'm lost. Could you show me on the map?",
+      "thai": "ผมหลงทางครับ ช่วยชี้ในแผนที่หน่อยได้มั้ยครับ",
+      "romanization": "phǒm lǒng-thaang kráp, chûay chíi nai phǎen-thîi nɔ̀ɔi dâai mái kráp",
+      "register": "asking_help",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 16,
+      "category": "directions_navigation",
+      "english": "Take the exit number three, then U-turn under the bridge.",
+      "thai": "ออกทางออกหมายเลขสาม แล้วกลับรถใต้สะพานครับ",
+      "romanization": "ɔ̀ɔk thaang-ɔ̀ɔk mǎai-lêek sǎam, láew glàp-rót thâai sà-phāan kráp",
+      "register": "precise",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 17,
+      "category": "directions_navigation",
+      "english": "Is there parking nearby?",
+      "thai": "มีที่จอดรถแถวนี้มั้ยครับ",
+      "romanization": "mii thîi-jɔ̀ɔt-rót thǎaw-níi mái kráp",
+      "register": "practical",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 18,
+      "category": "directions_navigation",
+      "english": "Go past the temple, you'll see it on your right.",
+      "thai": "ผ่านวัดไป จะเห็นอยู่ทางขวามือ",
+      "romanization": "phàan wát bpai, jà hěen yùu thaang khwǎa-mue",
+      "register": "guiding",
+      "notes": "ขวามือ = right hand side",
+      "particle": null
+    },
+    {
+      "id": 19,
+      "category": "directions_navigation",
+      "english": "The road is closed for construction. You need to detour.",
+      "thai": "ปิดซ่อมถอย ต้องอ้อมไปครับ",
+      "romanization": "pìt sɔ̂ɔm thǒi, dtâawng ɔ̂ɔm bpai kráp",
+      "register": "warning",
+      "notes": "Restructured: 'Closed repairing road, must circle'",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 20,
+      "category": "directions_navigation",
+      "english": "What time does the last train leave?",
+      "thai": "รถไฟขบวนสุดท้ายออกกี่โมงครับ",
+      "romanization": "rót-fai khà-buan sùt-tháai ɔ̀ɔk gìi mooeng kráp",
+      "register": "time_query",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 21,
+      "category": "restaurant_food",
+      "english": "I'd like to order pad thai, but not too spicy please.",
+      "thai": "สั่งผัดไทยครับ แต่ไม่เอาเผ็ดมากนะ",
+      "romanization": "sàng phàt-thai kráp, dtàae mâi ao pèt mâak ná",
+      "register": "ordering",
+      "notes": "เอา = take/want (colloquial for ใส่/ให้)",
+      "particle": "ครับ/นะ"
+    },
+    {
+      "id": 22,
+      "category": "restaurant_food",
+      "english": "Is this dish vegetarian? I'm allergic to shrimp.",
+      "thai": "อันนี้เจมั้ยครับ ผมแพ้กุ้งครับ",
+      "romanization": "an-níi jee mái kráp, phǒm pháae kûng kráp",
+      "register": "dietary_restriction",
+      "notes": "เจ = vegetarian (with religious context)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 23,
+      "category": "restaurant_food",
+      "english": "Check please! And could I get a takeaway bag?",
+      "thai": "เก็บตังค์ครับ แล้วก็ขอถุงห่อกลับด้วย",
+      "romanization": "gèp dtang kráp, láew-gâw khǎaw thǔng hɔ̀ɔ glàp dûay",
+      "register": "closing",
+      "notes": "เก็บตังค์ = informal for check",
+      "particle": "ครับ/ด้วย"
+    },
+    {
+      "id": 24,
+      "category": "restaurant_food",
+      "english": "This is delicious! What do you call this in Thai?",
+      "thai": "อร่อยมากเลยครับ อันนี้ภาษาไทยเรียกว่าอะไร",
+      "romanization": "à-ràwy mâak looei kráp, an-níi phaa-sǎa-thai rîiak wâa à-rai",
+      "register": "compliment",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 25,
+      "category": "restaurant_food",
+      "english": "I'll have the same as him, but with extra noodles.",
+      "thai": "เอาเหมือนเขาเลยครับ แต่ขอเพิ่มเส้น",
+      "romanization": "ao mǔean khǎo looei kráp, dtàae khǎaw phêm sên",
+      "register": "ordering",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 26,
+      "category": "restaurant_food",
+      "english": "Excuse me, we didn't order this dish.",
+      "thai": "ผมไม่ได้สั่งอันนี้ครับ",
+      "romanization": "phǒm mâi-dâai sàng an-níi kráp",
+      "register": "correcting",
+      "notes": "Direct translation acceptable here",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 27,
+      "category": "restaurant_food",
+      "english": "Do you have any recommendations? Something local.",
+      "thai": "มีอะไรแนะนำมั้ยครับ ของขึ้นชื่อหน่อย",
+      "romanization": "mii à-rai ná-nam mái kráp, khǎawng khûen-chûue nɔ̀ɔi",
+      "register": "seeking_advice",
+      "notes": "ของขึ้นชื่อ = famous things",
+      "particle": "ครับ"
+    },
+    {
+      "id": 28,
+      "category": "restaurant_food",
+      "english": "I'm still waiting for my rice.",
+      "thai": "ข้าวผมยังไม่มาเลยครับ",
+      "romanization": "khâaw phǒm yang mâi maa looei kráp",
+      "register": "inquiry",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 29,
+      "category": "restaurant_food",
+      "english": "This is too salty for me. Could you remake it?",
+      "thai": "อันนี้เค็มไปสำหรับผม ทำใหม่ได้มั้ยครับ",
+      "romanization": "an-níi khem bpai sǎm-ràp phǒm, tham mài dâai mái kráp",
+      "register": "complaint_polite",
+      "notes": "สำหรับ = for/regarding",
+      "particle": "ครับ"
+    },
+    {
+      "id": 30,
+      "category": "restaurant_food",
+      "english": "Keep the change. The meal was wonderful!",
+      "thai": "ไม่ต้องทอนนะครับ อร่อยมากเลย",
+      "romanization": "mâi-dtâawng thɔɔn ná kráp, à-ràwy mâak looei",
+      "register": "grateful_payment",
+      "notes": null,
+      "particle": "ครับ/นะ"
+    },
+    {
+      "id": 31,
+      "category": "shopping_transactions",
+      "english": "How much is this shirt? Is there a discount?",
+      "thai": "เสื้อตัวนี้เท่าไหร่ครับ ลดได้มั้ย",
+      "romanization": "sûuea tua-níi thâo-rài kráp, lòt dâai mái",
+      "register": "bargaining",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 32,
+      "category": "shopping_transactions",
+      "english": "I'm just looking, thanks.",
+      "thai": "ดูก่อนครับ",
+      "romanization": "duu kɔ̀ɔn kráp",
+      "register": "deflecting",
+      "notes": "Concise Thai often drops 'just' and 'thanks'",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 33,
+      "category": "shopping_transactions",
+      "english": "Do you have this in a larger size?",
+      "thai": "มีไซส์ใหญ่กว่านี้มั้ยครับ",
+      "romanization": "mii sai yài gwàa-níi mái kráp",
+      "register": "inquiry",
+      "notes": "ไซส์ = loanword from size",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 34,
+      "category": "shopping_transactions",
+      "english": "I'll take two of these and one of those.",
+      "thai": "เอาอันนี้สองอัน กับอันนั้นหนึ่งอันครับ",
+      "romanization": "ao an-níi sɔ̌ɔng an, kàp an-nán nùeng an kráp",
+      "register": "purchasing",
+      "notes": "อัน = classifier for objects",
+      "particle": "ครับ"
+    },
+    {
+      "id": 35,
+      "category": "shopping_transactions",
+      "english": "Can I pay by credit card? Or mobile payment?",
+      "thai": "จ่ายบัตรเครดิตได้มั้ยครับ หรือพร้อมเพย์ก็ได้",
+      "romanization": "jàai bàt khree-dìt dâai mái kráp, rǔue phrɔ́m-phay gâw dâai",
+      "register": "payment",
+      "notes": "พร้อมเพย์ = PromptPay (mobile banking)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 36,
+      "category": "shopping_transactions",
+      "english": "I'd like to return this. It's defective.",
+      "thai": "ขอคืนอันนี้ครับ มันเสียครับ",
+      "romanization": "khǎaw khûuen an-níi kráp, man sǐa kráp",
+      "register": "returning",
+      "notes": "เสีย = broken/defective",
+      "particle": "ครับ"
+    },
+    {
+      "id": 37,
+      "category": "shopping_transactions",
+      "english": "Where is the fitting room?",
+      "thai": "ห้องลองอยู่ไหนครับ",
+      "romanization": "hɔ̌ɔng lɔɔng yùu nǎi kráp",
+      "register": "locating",
+      "notes": "ลอง = try/change",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 38,
+      "category": "shopping_transactions",
+      "english": "That's too expensive. Can you give me a better price?",
+      "thai": "แพงไปครับ ลดให้หน่อยได้มั้ย",
+      "romanization": "phaeng bpai kráp, lòt hâi nɔ̀ɔi dâai mái",
+      "register": "negotiating",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 39,
+      "category": "shopping_transactions",
+      "english": "Do you have this in black?",
+      "thai": "มีสีดำมั้ยครับ",
+      "romanization": "mii sǐi dam mái kráp",
+      "register": "color_preference",
+      "notes": null,
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 40,
+      "category": "shopping_transactions",
+      "english": "I need a receipt for the company.",
+      "thai": "ขอใบเสร็จบริษัทหน่อยครับ",
+      "romanization": "khǎaw bai-sèt bà-rì-sàt nɔ̀ɔi kráp",
+      "register": "business",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 41,
+      "category": "formal_requests",
+      "english": "May I ask you for a favor?",
+      "thai": "ผมมีเรื่องจะรบกวนครับ",
+      "romanization": "phǒm mii rûeang jà róp-khuaan kráp",
+      "register": "formal_polite",
+      "notes": "รบกวน = disturb/bother (humble)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 42,
+      "category": "formal_requests",
+      "english": "Could you please speak more slowly?",
+      "thai": "ช่วยพูดช้าๆ หน่อยได้มั้ยครับ",
+      "romanization": "chûay phûut cháa-cháa nɔ̀ɔi dâai mái kráp",
+      "register": "accommodation",
+      "notes": "Reduplication ช้าๆ = slowly",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 43,
+      "category": "formal_requests",
+      "english": "I would like to schedule an appointment for next Tuesday.",
+      "thai": "ผมอยากนัดหมายวันอังคารหน้าครับ",
+      "romanization": "phǒm yàak nát-mǎai wan ang-khaan nâa kráp",
+      "register": "professional",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 44,
+      "category": "formal_requests",
+      "english": "May I have your contact information?",
+      "thai": "ขอเบอร์ติดต่อได้มั้ยครับ",
+      "romanization": "khǎaw booe dtìt-dtɔ̀ɔ dâai mái kráp",
+      "register": "networking",
+      "notes": "เบอร์ = number (colloquial but accepted in formal)",
+      "particle": "ครับ/ค่ะ"
+    },
+    {
+      "id": 45,
+      "category": "formal_requests",
+      "english": "Would it be possible to extend the deadline?",
+      "thai": "ขอเลื่อนวันเส้นตายได้มั้ยครับ",
+      "romanization": "khǎaw lûeuan wan sên-dtaai dâai mái kráp",
+      "register": "business",
+      "notes": "เส้นตาย = deadline (lit. 'dead line')",
+      "particle": "ครับ"
+    },
+    {
+      "id": 46,
+      "category": "formal_requests",
+      "english": "I need to request leave for personal reasons.",
+      "thai": "ผมขอลากิจครับ",
+      "romanization": "phǒm khǎaw laa-gìt kráp",
+      "register": "hr_formal",
+      "notes": "ลากิจ = business/personal leave (vs ลาป่วย sick)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 47,
+      "category": "formal_requests",
+      "english": "Could you kindly review this document?",
+      "thai": "ช่วยตรวจเอกสารฉบับนี้หน่อยครับ",
+      "romanization": "chûay dtruàt ay-gà-sǎan chà-bàp níi nɔ̀ɔi kráp",
+      "register": "colleague_to_colleague",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 48,
+      "category": "formal_requests",
+      "english": "I apologize for the inconvenience caused.",
+      "thai": "ขออภัยในความไม่สะดวกด้วยครับ",
+      "romanization": "khǎaw a-phai nai khwaam mâi sà-dùak dûay kráp",
+      "register": "apology",
+      "notes": null,
+      "particle": "ครับ"
+    },
+    {
+      "id": 49,
+      "category": "formal_requests",
+      "english": "Please let me know at your earliest convenience.",
+      "thai": "รบกวนแจ้งผมตอนสะดวกครับ",
+      "romanization": "róp-khuaan jâaeng phǒm dtɔ̂n sà-dùak kráp",
+      "register": "closing_formal",
+      "notes": "Restructured: 'Please notify me when convenient'",
+      "particle": "ครับ"
+    },
+    {
+      "id": 50,
+      "category": "formal_requests",
+      "english": "I would like to express my sincere gratitude.",
+      "thai": "ผมขอขอบพระคุณเป็นอย่างสูงครับ",
+      "romanization": "phǒm khǎaw khɔ̀p-phrá-khun bpen yàang sǔung kráp",
+      "register": "gratitude_ceremonial",
+      "notes": "พระคุณ = sacred kindness (elevated)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 51,
+      "category": "emotional_expressions",
+      "english": "I'm so happy for you! Congratulations!",
+      "thai": "ดีใจด้วยนะครับ ยินดีด้วยจริงๆ",
+      "romanization": "dii-jai dûay ná kráp, yin-dii dûay jing-jing",
+      "register": "celebratory",
+      "notes": "ดีใจ = happy (lit. good heart)",
+      "particle": "ครับ/นะ"
+    },
+    {
+      "id": 52,
+      "category": "emotional_expressions",
+      "english": "This is frustrating. Nothing is working today.",
+      "thai": "หงุดหงิดจัง วันนี้ทำอะไรก็ไม่ได้สักอย่าง",
+      "romanization": "ngùt-ngìt jang, wan-níi tham à-rai gâw mâi dâai sàk yàang",
+      "register": "venting",
+      "notes": "หงุดหงิด = frustrated/irritated",
+      "particle": null
+    },
+    {
+      "id": 53,
+      "category": "emotional_expressions",
+      "english": "I'm worried about the exam results.",
+      "thai": "กังวลเรื่องผลสอบจังเลย",
+      "romanization": "gang-won rûeang phǒn sɔ̀ɔp jang looei",
+      "register": "anxiety",
+      "notes": "กังวล = worry/anxious",
+      "particle": null
+    },
+    {
+      "id": 54,
+      "category": "emotional_expressions",
+      "english": "What a relief! I thought I lost my wallet.",
+      "thai": "โล่งใจจัง นึกว่าตกกระเป๋าแล้ว",
+      "romanization": "lông-jai jang, nûek wâa dtòk grà-bǎo láew",
+      "register": "relief",
+      "notes": "โล่งใจ = relieved (lit. empty heart)",
+      "particle": null
+    },
+    {
+      "id": 55,
+      "category": "emotional_expressions",
+      "english": "I'm heartbroken. We broke up yesterday.",
+      "thai": "เสียใจมาก เมื่อวานเลิกกันแล้ว",
+      "romanization": "sǐa-jai mâak, mûuea-waan lôek-kan láew",
+      "register": "sad_confiding",
+      "notes": "เสียใจ = sad (lit. broken heart), เลิกกัน = break up",
+      "particle": null
+    },
+    {
+      "id": 56,
+      "category": "emotional_expressions",
+      "english": "That's hilarious! Stop making me laugh!",
+      "thai": "ตลกมาก หยุดทำให้ผมขำก่อน",
+      "romanization": "dtà-lòk mâak, yùt tham hâi phǒm khǎm kɔ̀ɔn",
+      "register": "laughter",
+      "notes": "ขำ = laugh (verb)",
+      "particle": null
+    },
+    {
+      "id": 57,
+      "category": "emotional_expressions",
+      "english": "I'm exhausted. I haven't slept in thirty hours.",
+      "thai": "เหนื่อยมาก ไม่ได้นอนมาสามสิบชั่วโมงแล้ว",
+      "romanization": "nùueai mâak, mâi-dâai nɔɔn maa sǎam-sìp chûua-mooeng láew",
+      "register": "fatigue",
+      "notes": "เหนื่อย = tired/physical exhaustion",
+      "particle": null
+    },
+    {
+      "id": 58,
+      "category": "emotional_expressions",
+      "english": "How embarrassing! I forgot her name immediately.",
+      "thai": "น่าอายจัง จำชื่อเธอไม่ได้เลย",
+      "romanization": "nâa-aai jang, jam chûue thooe mâi dâai looei",
+      "register": "embarrassment",
+      "notes": "น่าอาย = embarrassing/shameful",
+      "particle": null
+    },
+    {
+      "id": 59,
+      "category": "emotional_expressions",
+      "english": "I'm furious. This is completely unacceptable.",
+      "thai": "โกรธมาก อันนี้รับไม่ได้จริงๆ",
+      "romanization": "kròot mâak, an-níi ráp mâi dâai jing-jing",
+      "register": "anger_controlled",
+      "notes": "โกรธ = angry",
+      "particle": null
+    },
+    {
+      "id": 60,
+      "category": "emotional_expressions",
+      "english": "I feel at peace here. It's so calming.",
+      "thai": "มาอยู่ที่นี่แล้วสงบใจดี เงียบสงบดีจัง",
+      "romanization": "maa yùu thîi-níi láew sà-ngòp-jai dii, ngìiap-sà-ngòp dii jang",
+      "register": "serenity",
+      "notes": "สงบใจ = peaceful mind",
+      "particle": null
+    },
+    {
+      "id": 61,
+      "category": "complex_compound",
+      "english": "Although it was raining, we decided to go hiking because we had already prepared everything.",
+      "thai": "ถึงจะฝนตก แต่เราก็ตัดสินใจไปเที่ยวป่า เพราะว่าเตรียมของเสร็จหมดแล้ว",
+      "romanization": "thǔeng jà fǒn tòk, dtàae rao gâw dtàt-sǐn-jai bpai thîaw bpàa, phráw wâa dtriiam khǎawng sèt mòt láew",
+      "register": "narrative_complex",
+      "notes": "Multiple clauses, conjunctions ถึง...แต่ (although...but)",
+      "particle": null
+    },
+    {
+      "id": 62,
+      "category": "complex_compound",
+      "english": "If I had known earlier, I would have booked a different hotel.",
+      "thai": "ถ้ารู้ก่อน ผมจองโรงแรมที่อื่นแล้ว",
+      "romanization": "thâa rúu kɔ̀ɔn, phǒm jɔ̌ɔng roong-raem thîi ùuen láew",
+      "register": "conditional_past",
+      "notes": "Thai often drops hypothetical auxiliaries, uses context",
+      "particle": null
+    },
+    {
+      "id": 63,
+      "category": "complex_compound",
+      "english": "The book that I told you about yesterday was written by my former professor who moved to Chiang Mai.",
+      "thai": "หนังสือที่ผมเล่าให้ฟังเมื่อวาน เขียนโดยอาจารย์เก่าที่ย้ายไปเชียงใหม่แล้ว",
+      "romanization": "nǎng-sǔue thîi phǒm lâo hâi fang mûuea-waan, khǐian dooy aa-jàan kào thîi yáai bpai chiiang-mài láew",
+      "register": "relative_clauses",
+      "notes": "Nested relative clauses with ที่",
+      "particle": null
+    },
+    {
+      "id": 64,
+      "category": "complex_compound",
+      "english": "Not only did he finish the project, but he also improved the entire system beyond expectations.",
+      "thai": "เขาไม่แค่ทำโปรเจคจบ แต่ยังปรับปรุงระบบทั้งหมดให้ดีกว่าที่คาดไว้อีก",
+      "romanization": "khǎo mâi khâe tham boo-jèk jòp, dtàae yang bpràp-bprung rá-bop tháng-mòt hâi dii gwàa thîi khâat wái ìik",
+      "register": "achievement",
+      "notes": "ไม่แค่...แต่ยัง (not only...but also)",
+      "particle": null
+    },
+    {
+      "id": 65,
+      "category": "complex_compound",
+      "english": "By the time we arrive, they will have already eaten dinner and left the restaurant.",
+      "thai": "ตอนเราถึง เขากินข้าวเย็นเสร็จและออกจากร้านไปแล้ว",
+      "romanization": "dtɔ̂n rao thǔeng, khǎo kin khâaw-yen sèt láe ɔ̀ɔk jàak ráan bpai láew",
+      "register": "future_perfect",
+      "notes": "Thai uses context words แล้ว (already) for perfect aspect",
+      "particle": null
+    },
+    {
+      "id": 66,
+      "category": "complex_compound",
+      "english": "She asked me whether I preferred to meet on Tuesday or Wednesday, but I couldn't decide.",
+      "thai": "เธอถามผมว่าชอบเจอวันอังคารหรือพุธดี แต่ผมตัดสินใจไม่ได้",
+      "romanization": "thooe thǎam phǒm wâa châawp jooe wan ang-khaan rǔue phút dii, dtàae phǒm dtàt-sǐn-jai mâi dâai",
+      "register": "indirect_speech",
+      "notes": "Embedded question with ว่า",
+      "particle": null
+    },
+    {
+      "id": 67,
+      "category": "complex_compound",
+      "english": "Running every morning requires discipline, which I unfortunately lack at the moment.",
+      "thai": "วิ่งทุกเช้าต้องใช้วินัย ซึ่งตอนนี้ผมเสียดายที่ยังทำไม่ได้",
+      "romanization": "wîng thúk-cháo dtâawng chái wi-nai, sûeng dtɔ̂n-níi phǒm sǐa-daai thîi yang tham mâi dâai",
+      "register": "self_deprecating",
+      "notes": "ซึ่ง = which (formal relative)",
+      "particle": null
+    },
+    {
+      "id": 68,
+      "category": "complex_compound",
+      "english": "The more I study Thai, the more I realize how much I don't know.",
+      "thai": "ยิ่งเรียนภาษาไทยมากเท่าไหร่ ยิ่งรู้ว่ารู้อะไรน้อยนิด",
+      "romanization": "yîng riian phaa-sǎa-thai mâak thâo-rài, yîng rúu wâa rúu à-rai nɔ́ɔy-nít",
+      "register": "correlative",
+      "notes": "ยิ่ง...ยิ่ง (the more...the more)",
+      "particle": null
+    },
+    {
+      "id": 69,
+      "category": "complex_compound",
+      "english": "Before leaving, make sure you have turned off all the lights and locked every door.",
+      "thai": "ก่อนออกจากบ้าน เช็คให้ดีว่าปิดไฟหมดทุกดวงและล็อกประตูทุกบานแล้ว",
+      "romanization": "kɔ̀ɔn ɔ̀ɔk jàak bâan, chék hâi dii wâa pìt fai mòt thúk-duang láe lók bprà-dtuu thúk-baan láew",
+      "register": "instructional",
+      "notes": "Imperative with ให้ดี (properly)",
+      "particle": null
+    },
+    {
+      "id": 70,
+      "category": "complex_compound",
+      "english": "Despite having lived here for five years, he still struggles to read Thai newspapers.",
+      "thai": "ถึงจะอยู่ที่นี่มาห้าปีแล้ว เขาก็ยังอ่านหนังสือพิมพ์ไทยลำบากอยู่",
+      "romanization": "thǔeng jà yùu thîi-níi maa hâa bpii láew, khǎo gâw yang àan nǎng-sǔue-phim thai lam-bàak yùu",
+      "register": "observation",
+      "notes": "ถึงจะ...ก็ยัง (despite...still)",
+      "particle": null
+    },
+    {
+      "id": 71,
+      "category": "idioms_cultural",
+      "english": "Don't put all your eggs in one basket.",
+      "thai": "อย่าใส่ไข่ทั้งหมดไว้ในตะกร้าใบเดียวกัน",
+      "romanization": "yàa sài khài tháng-mòt wái nai dtà-gràa bai diao kan",
+      "register": "advice",
+      "notes": "Direct translation works in Thai",
+      "particle": null
+    },
+    {
+      "id": 72,
+      "category": "idioms_cultural",
+      "english": "It's raining cats and dogs.",
+      "thai": "ฝนตกหนักมากเลยครับ",
+      "romanization": "fǒn tòk nàk mâak looei kráp",
+      "register": "weather_description",
+      "notes": "Cultural adaptation: Thai doesn't use animal metaphor, just 'heavy rain'",
+      "particle": "ครับ"
+    },
+    {
+      "id": 73,
+      "category": "idioms_cultural",
+      "english": "Kill two birds with one stone.",
+      "thai": "หนึ่งเดียวได้สองสิ่ง",
+      "romanization": "nùeng diao dâai sɔ̌ɔng sìng",
+      "register": "efficiency",
+      "notes": "'One thing gets two items' - no killing mentioned",
+      "particle": null
+    },
+    {
+      "id": 74,
+      "category": "idioms_cultural",
+      "english": "Break a leg!",
+      "thai": "ช่วยทำให้เต็มที่นะครับ สู้ๆ",
+      "romanization": "chûay tham hâi dtèm-thîi ná kráp, sûu-sûu",
+      "register": "encouragement",
+      "notes": "'Do your best' + 'fight fight' (sûu-sûu). No leg breaking.",
+      "particle": "ครับ/นะ"
+    },
+    {
+      "id": 75,
+      "category": "idioms_cultural",
+      "english": "Cost an arm and a leg.",
+      "thai": "แพงจนต้องขายตับไตไล่กระดูก",
+      "romanization": "phaeng jon dtâawng khǎai dtàp-dtai lâi grà-dùuk",
+      "register": "expensive_hyperbole",
+      "notes": "'Expensive must sell liver kidney chase bones' (graphic Thai idiom)",
+      "particle": null
+    },
+    {
+      "id": 76,
+      "category": "idioms_cultural",
+      "english": "Once in a blue moon.",
+      "thai": "นานทีปีหน",
+      "romanization": "naan thii bpii nǎng",
+      "register": "rarity",
+      "notes": "'Rare year, once a year' - Buddhist calendar reference",
+      "particle": null
+    },
+    {
+      "id": 77,
+      "category": "idioms_cultural",
+      "english": "The ball is in your court.",
+      "thai": "ตอนนี้ก็ขึ้นอยู่กับคุณแล้วครับ",
+      "romanization": "dtɔ̂n-níi gâw khûen yùu kàp khun láew kráp",
+      "register": "responsibility_transfer",
+      "notes": "'Now it depends on you' - no sports metaphor",
+      "particle": "ครับ"
+    },
+    {
+      "id": 78,
+      "category": "idioms_cultural",
+      "english": "Bite the bullet.",
+      "thai": "อดทนอีกนิดนึงครับ",
+      "romanization": "òt-thon ìik nít-nùeng kráp",
+      "register": "endurance",
+      "notes": "'Endure a little more' - no bullet imagery",
+      "particle": "ครับ"
+    },
+    {
+      "id": 79,
+      "category": "idioms_cultural",
+      "english": "Don't count your chickens before they hatch.",
+      "thai": "อย่าพึ่งดีใจก่อน รอให้สำเร็จก่อนดีกว่า",
+      "romanization": "yàa phûeng dii-jai kɔ̀ɔn, rɔɔ hâi sǎm-rèt kɔ̀ɔn dii gwàa",
+      "register": "caution",
+      "notes": "'Don't be happy first, wait until success first' - no chicken imagery",
+      "particle": null
+    },
+    {
+      "id": 80,
+      "category": "idioms_cultural",
+      "english": "Hit the sack.",
+      "thai": "ผมขอตัวไปนอนก่อนนะครับ",
+      "romanization": "phǒm khǎaw dtua bpai nɔ̌ɔn kɔ̀ɔn ná kráp",
+      "register": "retiring",
+      "notes": "'I ask body to sleep first' - polite excuse formula, no sack reference",
+      "particle": "ครับ/นะ"
+    },
+    {
+      "id": 81,
+      "category": "questions",
+      "english": "Do you like spicy food? (Yes/No)",
+      "thai": "ชอบกินเผ็ดมั้ยครับ",
+      "romanization": "châawp kin pèt mái kráp",
+      "register": "yes_no",
+      "notes": "มั้ย = question particle for yes/no",
+      "particle": "ครับ"
+    },
+    {
+      "id": 82,
+      "category": "questions",
+      "english": "What time is it now? (Wh-)",
+      "thai": "ตอนนี้กี่โมงแล้วครับ",
+      "romanization": "dtɔ̂n-níi gìi mooeng láew kráp",
+      "register": "wh_question",
+      "notes": "กี่ = how many (question word)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 83,
+      "category": "questions",
+      "english": "You went to the market yesterday, didn't you? (Tag)",
+      "thai": "เมื่อวานไปตลาดมาใช่มั้ย",
+      "romanization": "mûuea-waan bpai dtà-làat maa châi mái",
+      "register": "tag_question",
+      "notes": "ใช่มั้ย = correct + yes/no (Thai tag format)",
+      "particle": null
+    },
+    {
+      "id": 84,
+      "category": "questions",
+      "english": "Why didn't you tell me earlier? (Wh-)",
+      "thai": "ทำไมไม่บอกผมก่อนล่ะครับ",
+      "romanization": "tham-mai mâi bɔ̀ɔk phǒm kɔ̀ɔn lá kráp",
+      "register": "demanding",
+      "notes": "ทำไม = why, ล่ะ = emphatic particle",
+      "particle": "ครับ/ล่ะ"
+    },
+    {
+      "id": 85,
+      "category": "questions",
+      "english": "Which way is faster, the highway or the surface roads? (Alternative)",
+      "thai": "ทางไหนเร็วกว่ากัน ทางด่วนหรือทางธรรมดาครับ",
+      "romanization": "thaang nǎi reo gwàa gan, thaang dùan rǔue thaang tham-má-daa kráp",
+      "register": "alternative",
+      "notes": "หรือ = or (question format)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 86,
+      "category": "questions",
+      "english": "How much does this cost per kilogram? (Wh-)",
+      "thai": "กิโลละกี่บาทครับ",
+      "romanization": "gì-loo-lá gìi bàat kráp",
+      "register": "price_inquiry",
+      "notes": "กิโลละ = per kilo",
+      "particle": "ครับ"
+    },
+    {
+      "id": 87,
+      "category": "questions",
+      "english": "Is this the right platform for the train to Ayutthaya? (Yes/No)",
+      "thai": "ชานชาลานี้รถไปอยุธยาใช่มั้ยครับ",
+      "romanization": "chaan-chaa níi rót bpai à-yút-thá-yaa châi mái kráp",
+      "register": "verification",
+      "notes": "ชานชาลา = platform",
+      "particle": "ครับ"
+    },
+    {
+      "id": 88,
+      "category": "questions",
+      "english": "Who was that person you were talking to? (Wh-)",
+      "thai": "เมื่อกี้คุยกับใครเหรอครับ",
+      "romanization": "mûuea-gîi khui kàp khrai rǒoe kráp",
+      "register": "curiosity",
+      "notes": "เหรอ = softener particle for questions",
+      "particle": "ครับ/เหรอ"
+    },
+    {
+      "id": 89,
+      "category": "questions",
+      "english": "You can drive, or should I call a taxi? (Alternative)",
+      "thai": "คุณขับได้มั้ย หรือผมเรียกแท็กซี่ดี",
+      "romanization": "khun khàp dâai mái, rǔue phǒm rîiak tháek-sîi dii",
+      "register": "offering_choice",
+      "notes": null,
+      "particle": null
+    },
+    {
+      "id": 90,
+      "category": "questions",
+      "english": "Haven't you eaten yet? (Negative Yes/No)",
+      "thai": "ยังไม่ได้กินข้าวหรอครับ",
+      "romanization": "yang mâi dâai kin khâaw rɔ̌ɔ kráp",
+      "register": "concerned",
+      "notes": "หรอ/เหรอ = softener",
+      "particle": "ครับ/หรอ"
+    },
+    {
+      "id": 91,
+      "category": "time_numbers_practical",
+      "english": "The meeting starts at half past two in the afternoon.",
+      "thai": "นัดกันบ่ายสองโมงครึ่งครับ",
+      "romanization": "nát kan bàai sɔ̌ɔng mooeng khûeng kráp",
+      "register": "scheduling",
+      "notes": "บ่าย = afternoon (1-4pm), โมงครึ่ง = half past",
+      "particle": "ครับ"
+    },
+    {
+      "id": 92,
+      "category": "time_numbers_practical",
+      "english": "I need 250 milligrams of this medication, twice daily.",
+      "thai": "ตัวนี้ต้องกินครั้งละสองร้อยห้าสิบมิลลิกรัม วันละสองครั้งครับ",
+      "romanization": "tua-níi dtâawng kin khráng lá sɔ̌ɔng-róoi-hâa-sìp mil-li-gà-ram, wan lá sɔ̌ɔng khráng kráp",
+      "register": "medical",
+      "notes": "ครั้ง = occasion/time (classifier for actions)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 93,
+      "category": "time_numbers_practical",
+      "english": "Room number three hundred twelve, on the third floor.",
+      "thai": "ห้องสามร้อยสิบสอง ชั้นสามครับ",
+      "romanization": "hɔ̌ɔng sǎam-róoi-sìp-sɔ̌ɔng, chán sǎam kráp",
+      "register": "hotel_navigation",
+      "notes": "ชั้น = floor/story",
+      "particle": "ครับ"
+    },
+    {
+      "id": 94,
+      "category": "time_numbers_practical",
+      "english": "My phone number is zero eight one, two three four, five six seven eight.",
+      "thai": "เบอร์ผมศูนย์แปดหนึ่ง สองสามสี่ ห้าหกเจ็ดแปดครับ",
+      "romanization": "booe phǒm sǔun bpèt nùeng, sɔ̌ɔng sǎam sìi, hâa hòk jèt bpèt kráp",
+      "register": "contact_exchange",
+      "notes": "Thai reads phone numbers as individual digits or pairs",
+      "particle": "ครับ"
+    },
+    {
+      "id": 95,
+      "category": "time_numbers_practical",
+      "english": "The package weighs two point five kilograms.",
+      "thai": "พัสดุหนักสองจุดห้ากิโลครับ",
+      "romanization": "phát-sà-dù nàk sɔ̌ɔng jùt hâa gì-loo kráp",
+      "register": "shipping",
+      "notes": "จุด = point (decimal)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 96,
+      "category": "time_numbers_practical",
+      "english": "I was born on November twelfth, nineteen eighty-five.",
+      "thai": "ผมเกิดวันที่สิบสอง พฤศจิกายน สองพันห้าร้อยแปดสิบห้าครับ",
+      "romanization": "phǒm gùuet wan-thîi sìp-sɔ̌ɔng phrúe-sà-jì-kaa-yon sɔ̌ɔng-phan-hâa-róoi-bpèt-sìp-hâa kráp",
+      "register": "biographical",
+      "notes": "Uses Buddhist Era year (2528)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 97,
+      "category": "time_numbers_practical",
+      "english": "The store opens at ten and closes at nine thirty in the evening.",
+      "thai": "ร้านเปิดสิบโมงเช้า ปิดสามทุ่มครึ่งครับ",
+      "romanization": "ráan bpèet sìp mooeng cháo, pìt sǎam thûm khûeng kráp",
+      "register": "business_hours",
+      "notes": "ทุ่ม = hour of night (1-6am/pm reversed counting)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 98,
+      "category": "time_numbers_practical",
+      "english": "Transfer three thousand baht to this account.",
+      "thai": "โอนสามพันบาทเข้าบัญชีนี้ครับ",
+      "romanization": "oon sǎam-phan bàat khâo ban-chee níi kráp",
+      "register": "banking",
+      "notes": "โอน = transfer (electronic)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 99,
+      "category": "time_numbers_practical",
+      "english": "I have a reservation for four people at seven PM.",
+      "thai": "จองโต๊ะสี่คน เวลาหนึ่งทุ่มครับ",
+      "romanization": "jɔ̌ɔng tó sìi khon, wee-laa nùeng thûm kráp",
+      "register": "restaurant_booking",
+      "notes": "ทุ่ม = PM hour marker (7pm = 1ทุ่ม)",
+      "particle": "ครับ"
+    },
+    {
+      "id": 100,
+      "category": "time_numbers_practical",
+      "english": "The warranty is valid for two years from the purchase date.",
+      "thai": "ประกันสองปีนับจากวันซื้อครับ",
+      "romanization": "bprà-gan sɔ̌ɔng bpii náp jàak wan súue kráp",
+      "register": "commercial",
+      "notes": "นับจาก = count from",
+      "particle": "ครับ"
+    }
+  ]
+}
