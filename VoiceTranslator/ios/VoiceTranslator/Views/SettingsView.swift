@@ -16,6 +16,7 @@ struct SettingsView: View {
                 ScrollView {
                     VStack(spacing: 24) {
                         apiKeySection
+                        speakerGenderSection
                         voiceProfileSection
                         aboutSection
                     }
@@ -83,6 +84,39 @@ struct SettingsView: View {
             Text("Your key is stored in the iOS Keychain and never leaves your device except to call the Anthropic API directly.")
                 .font(.system(size: 12))
                 .foregroundStyle(.white.opacity(0.3))
+        }
+    }
+
+    // MARK: - Speaker Gender
+
+    private var speakerGenderSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionHeader("Speaker Gender")
+
+            HStack(spacing: 12) {
+                genderButton("Male", gender: .male)
+                genderButton("Female", gender: .female)
+            }
+
+            Text("Affects politeness particles in Thai translation (ครับ vs ค่ะ).")
+                .font(.system(size: 12))
+                .foregroundStyle(.white.opacity(0.3))
+        }
+    }
+
+    private func genderButton(_ label: String, gender: TranslationService.SpeakerGender) -> some View {
+        Button {
+            appState.speakerGender = gender
+        } label: {
+            Text(label)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundStyle(appState.speakerGender == gender ? .white : .white.opacity(0.5))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(
+                    appState.speakerGender == gender ? Color.blue.opacity(0.6) : Color.white.opacity(0.08),
+                    in: RoundedRectangle(cornerRadius: 10)
+                )
         }
     }
 

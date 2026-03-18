@@ -33,6 +33,9 @@ struct TranslationView: View {
 
                 Spacer()
 
+                // Transcript display
+                transcriptDisplay
+
                 // State indicator
                 stateIndicator
 
@@ -46,6 +49,8 @@ struct TranslationView: View {
         .onAppear {
             if let key = appState.anthropicAPIKey {
                 pipeline.configure(apiKey: key)
+                pipeline.setSpeakerGender(appState.speakerGender)
+                appState.loadVoiceModel(into: pipeline)
             }
         }
         .sheet(isPresented: $showSettings) {
@@ -155,6 +160,44 @@ struct TranslationView: View {
             .fill(.red)
             .frame(width: 12, height: 12)
             .modifier(PulseModifier())
+    }
+
+    // MARK: - Transcript Display
+
+    private var transcriptDisplay: some View {
+        VStack(spacing: 16) {
+            // English transcript (what user said)
+            if !pipeline.currentTranscript.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("EN")
+                        .font(.system(size: 11, weight: .bold, design: .monospaced))
+                        .foregroundStyle(.white.opacity(0.3))
+                    Text(pipeline.currentTranscript)
+                        .font(.system(size: 16))
+                        .foregroundStyle(.white.opacity(0.7))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.horizontal, 24)
+                .transition(.opacity.combined(with: .move(edge: .top)))
+            }
+
+            // Thai translation
+            if !pipeline.currentTranslation.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("TH")
+                        .font(.system(size: 11, weight: .bold, design: .monospaced))
+                        .foregroundStyle(.white.opacity(0.3))
+                    Text(pipeline.currentTranslation)
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundStyle(.white.opacity(0.9))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.horizontal, 24)
+                .transition(.opacity.combined(with: .move(edge: .bottom)))
+            }
+        }
+        .animation(.easeInOut(duration: 0.2), value: pipeline.currentTranscript)
+        .animation(.easeInOut(duration: 0.2), value: pipeline.currentTranslation)
     }
 
     // MARK: - Colors

@@ -12,20 +12,42 @@ final class TranslationService: ObservableObject {
     // Callback: fires for each streamed phrase (complete enough to send to TTS)
     var onPhrase: ((String) -> Void)?
 
-    private let systemPrompt = """
-    You are a real-time voice translator. Translate the following spoken English \
-    into natural spoken Thai (ภาษาพูด, not formal written Thai).
+    /// Speaker gender affects politeness particles (ครับ vs ค่ะ)
+    var speakerGender: SpeakerGender = .male
 
-    Rules:
-    - Use colloquial register appropriate for everyday conversation
-    - Preserve the speaker's tone and intent (casual, urgent, polite, etc.)
-    - Use ครับ for male speaker, ค่ะ for female speaker (default to ครับ)
-    - Do NOT add explanations, notes, or alternatives
-    - Output ONLY the Thai translation in Thai script
-    - Do NOT include romanization or pronunciation guides
-    - For greetings, use natural Thai equivalents (e.g., "Hi" → "สวัสดีครับ")
-    - Translate idioms to Thai cultural equivalents, not literally
-    """
+    enum SpeakerGender: String {
+        case male, female
+        var particle: String { self == .male ? "ครับ" : "ค่ะ" }
+        var particleAlt: String { self == .male ? "ครับ" : "คะ" }
+    }
+
+    private var systemPrompt: String {
+        """
+        You are a real-time voice translator. Translate spoken English into \
+        natural spoken Thai (ภาษาพูด, not formal written Thai).
+
+        CRITICAL RULES:
+        1. Output ONLY Thai script. No romanization, no explanations, no alternatives.
+        2. Use colloquial register for everyday conversation.
+        3. Preserve the speaker's tone and intent (casual, urgent, polite, humorous).
+        4. Use \(speakerGender.particle) for polite particles (speaker is \(speakerGender.rawValue)).
+        5. Use \(speakerGender.particleAlt) for question particles.
+        6. Translate idioms to Thai cultural equivalents, not literally.
+        7. For greetings, use natural Thai: "Hi" → "สวัสดี\(speakerGender.particle)"
+        8. Keep translations concise — prefer short spoken forms over verbose written forms.
+
+        TONAL ACCURACY:
+        - Thai is a tonal language with 5 tones. Choose words carefully to preserve \
+          meaning. When multiple Thai words could translate an English word, prefer the \
+          one most commonly used in spoken conversation.
+        - Maintain natural Thai prosody: avoid unnatural word order that sounds translated.
+
+        PHRASE STRUCTURE:
+        - Use spaces between clauses to enable incremental text-to-speech.
+        - Place natural pause points (spaces) where a Thai speaker would pause.
+        - Keep each clause short enough for fluid speech synthesis (3-8 syllables ideal).
+        """
+    }
 
     func configure(apiKey: String) {
         client = AnthropicClient(apiKey: apiKey)
